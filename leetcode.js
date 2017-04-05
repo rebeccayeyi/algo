@@ -25,6 +25,25 @@ function twoSum(arr, target) {
   }
 }
 
+// 7. reverse integer
+var reverse = function(x) {
+    let y = x.toString().split('').reverse().join('');
+    if (parseInt(y) > 2147483647) return 0;
+    return  x < 0 ? -Math.abs(parseInt(y)) : parseInt(y);
+};
+
+// 9. palindrome number
+var isPalindrome = function(x) {
+    let y = x.toString();
+    let reversed = y.split('').reverse().join('');
+    let i = 0;
+    while(i < y.length) {
+        if (y[i] !== reversed[i]) return false;
+        i++
+    }
+    return true;
+};
+
 // 461. hamming distance
 var hammingDistance = function(x, y) {
   let counter = 0;

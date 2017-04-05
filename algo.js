@@ -242,22 +242,22 @@ function isPalindrome(s) {
   return s === s.split('').reverse().join('')
 }
 
-function longestPalindrome(s) {
-  let palin = ''
-  if(isPalindrome(s)) {
-    return s
-  }
-  for(i = 0; i < s.length; i++) {
-    let sub = s.substr(i, s.length)
-    for(j = sub.length - 1; j >=0; j--) {
-      let secondSub = sub.substr(0, j)
-      if(isPalindrome(secondSub) && palin.length < secondSub.length) {
-        palin = secondSub
-      }
-    }
-  }
-  return palin
-}
+// function longestPalindrome(s) {
+//   let palin = ''
+//   if(isPalindrome(s)) {
+//     return s
+//   }
+//   for(i = 0; i < s.length; i++) {
+//     let sub = s.substr(i, s.length)
+//     for(j = sub.length - 1; j >=0; j--) {
+//       let secondSub = sub.substr(0, j)
+//       if(isPalindrome(secondSub) && palin.length < secondSub.length) {
+//         palin = secondSub
+//       }
+//     }
+//   }
+//   return palin
+// }
 
 // max diff (index of higher number must be higher)
 function maxDiff(arr) {
@@ -277,24 +277,6 @@ function maxDiff(arr) {
     }
     return diff
   }
-}
-
-function palindrome(s) {
-  let max = ''
-  for (i = 0; i < s.length; i++) {
-    let sub = s.substr(i, s.length)
-    for (j = sub.length-1; j >= 0; j--) {
-      let secondSub = sub.substr(0, j)
-      if (isPalindrome(secondSub) && secondSub.length > max.length) {
-        max = secondSub
-      }
-    }
-  }
-  return max
-}
-
-function isPalindrome(s) {
-  return s === s.split('').reverse().join('')
 }
 
 function maxDiff(arr) {

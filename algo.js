@@ -279,21 +279,6 @@ function maxDiff(arr) {
   }
 }
 
-function maxDiff(arr) {
-  let max = Math.max.apply(null, arr)
-  if (arr.indexOf(max) === 0) {
-    arr.splice(0, 1)
-    max = Math.max.apply(null, arr)
-  }
-  for (i = 0; i < arr.indexOf(max); i++) {
-    let diff = 0;
-    if (max - arr[i] > diff) {
-      diff = max - arr[i]
-    }
-    return diff
-  }
-}
-
 function largestSubstring(s) {
   let max = ''
   let sub = ''

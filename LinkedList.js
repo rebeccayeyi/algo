@@ -14,14 +14,14 @@ LinkedList.prototype.addToHead = function(value) {
   if (this.head) this.head.prev = node;
   else this.tail = node;
   this.head = node;
-}
+};
 
 LinkedList.prototype.addToTail = function(value) {
   let node = new Node(value, null, this.tail);
   if (this.tail) this.tail.next = node;
   else this.head = node;
   this.tail = node;
-}
+};
 
 LinkedList.prototype.removeHead = function() {
   if (!this.head) return null;
@@ -55,7 +55,7 @@ LinkedList.prototype.indexOf = function(searchValue) {
   let currentNode = this.head;
   while (currentNode) {
     if (currentNode.value === searchValue) return index;
-    index++
+    i++;
     currentNode = currentNode.next;
   }
   return false;

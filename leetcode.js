@@ -151,6 +151,68 @@ var moveZeroes = function(nums) {
   }
 };
 
+// 448. Find All Numbers Disappeared in an Array
+function HashTable(value) {
+    this.table = Array(value);
+}
+
+HashTable.prototype.insert = function(value) {
+    this.table[value] = value;
+    return value;
+}
+
+HashTable.prototype.findMissing = function() {
+    let missing = [];
+    for (i = 1; i < this.table.length; i++) {
+        if (!this.table[i]) missing.push(i);
+    }
+    return missing;
+}
+
+var findDisappearedNumbers = function(nums) {
+    if (!nums.length) return [];
+    let size = 0;
+    let max = Math.max.apply(null, nums)
+    max  > nums.length ? size = max : size = nums.length
+    let table = new HashTable(size + 1);
+    for (i = 0; i < nums.length; i++) {
+      table.insert(nums[i])
+    }
+    return table.findMissing();
+};
+// for any array of numbers(not starting from 1)
+function HashTable(size, min, max) {
+    this.table = Array(size);
+    this.min = min;
+    this.max = max;
+}
+
+HashTable.prototype.insert = function(value) {
+    this.table[value] = value;
+    return value;
+}
+
+HashTable.prototype.findMissing = function() {
+    let missing = [];
+    for (i = this.min; i < this.max; i++) {
+        if (!this.table[i]) missing.push(i);
+    }
+    return missing;
+}
+
+var findDisappearedNumbers = function(nums) {
+    if (!nums.length) return [];
+    let size = 0;
+    let max = Math.max.apply(null, nums)
+    let min = Math.min.apply(null, nums)
+    max  > nums.length ? size = max : size = nums.length
+    let table = new HashTable(size + 1, min, max);
+    for (i = 0; i < nums.length; i++) {
+      table.insert(nums[i])
+    }
+    return table.findMissing();
+};
+
 // 485. Max Consecutive Ones
 var findMaxConsecutiveOnes = function(nums) {
   if (!nums.includes(0)) {
@@ -179,4 +241,38 @@ var detectCapitalUse = function(word) {
     let sub = word.substr(1, word.length-1);
     if (word[0] === word[0].toUpperCase() && sub === sub.toLowerCase()) return true;
     return false;
+};
+
+// 535. Encode and Decode TinyURL
+function HashTable() {
+  this.table = {};
+}
+
+HashTable.prototype.hash = function(url) {
+  let codeAt = 0;
+  for (i = 0; i < url.length; i++) {
+    codeAt += url[i].charCodeAt()
+  }
+  return codeAt % 7000000;
+}
+
+HashTable.prototype.insert = function(url) {
+  let encoded = this.hash(url);
+  this.table[encoded] = url;
+  return encoded;
+}
+
+HashTable.prototype.get = function(code) {
+  let decode = this.table[code];
+  return decode;
+}
+
+var table = new HashTable();
+
+var encode = function(longUrl) {
+  return table.insert(longUrl)
+};
+
+var decode = function(shortUrl) {
+  return table.get(shortUrl)
 };
